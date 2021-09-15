@@ -45,7 +45,6 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
@@ -55,4 +54,3 @@ let store = {
 }
 
 export default store;
-window.store = store;
