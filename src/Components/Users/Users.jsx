@@ -1,18 +1,18 @@
 import React from 'react';
-import styles from "./users.module.css";
-import userPhoto from "../../assets/images/no_avatar.png";
+import styles from './users.module.css';
+import userPhoto from '../../assets/images/no_avatar.png';
 
 
 let Users = (props) => {
     let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize);
     let pages = [];
-    for (let i=1; i<=pagesCount; i++){
+    for (let i=1; i <= pagesCount; i++){
         pages.push(i);
     }
 
     return <div>
         <div>
-            { pages.map(p => {
+            {pages.map(p => {
                     return <span className={props.currentPage === p && styles.selectedPage }
                                  onClick={() => {
                                      props.onPageChanged(p)
@@ -28,12 +28,12 @@ let Users = (props) => {
                     </div>
                     <div>
                          {u.followed
-                             ? <button>onClick={() => {
-                                 props.follow(u.id)
-                             }}>unfollow</button>
-                             : <button>onClick={() => {
+                             ? <button onClick={() => {
                                  props.unfollow(u.id)
-                             }}Follow</button>}
+                             }}>Unfollow</button>
+                             : <button onClick={() => {
+                                 props.follow(u.id)
+                             }}>Follow</button>}
                     </div>
                 </span>
                 <span>

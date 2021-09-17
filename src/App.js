@@ -5,15 +5,12 @@ import Navbar from './Components/Navbar/Navbar';
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./Components/Profile/Profile";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
-import Users from "./Components/Users/Users";
+import UsersContainer from "./Components/Users/UsersContainer";
 
 
 
-const App = (props) => {
-
-
+const App = () => {
     return (
-        <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
@@ -25,10 +22,10 @@ const App = (props) => {
                            render={ () => <Profile /> }/>
 
                     <Route path='/users'
-                           render={ () => <Users /> }/>
+                           render={ () => <UsersContainer /> }/>
                 </div>
             </div>
-        </BrowserRouter>);
+        );
 }
 
 
