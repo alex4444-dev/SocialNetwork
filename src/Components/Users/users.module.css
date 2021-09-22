@@ -1,7 +1,44 @@
+body {
+    color: white;
+}
+
 .userPhoto {
     width: 100px;
     height: 100px;
 }
-.selectedPage {
+
+.selectedPage  {
+    color: yellow;
     font-weight: bold;
+    margin-left: 3px;
+    margin-right: 3px;
 }
+
+.selectedPage:hover {
+    height: 34px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.p {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.followBtn {
+    border-radius: 10px;
+}
+
+.followBtn:hover {
+    cursor: pointer;
+}
+
+.unfollowBtn {
+    border-radius: 10px;
+}
+
+.unfollowBtn:hover {
+    cursor: pointer;
+}
+
+
