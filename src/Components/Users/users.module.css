@@ -14,16 +14,13 @@ body {
     margin-right: 3px;
 }
 
+
 .selectedPage:hover {
     height: 34px;
     width: 100px;
     cursor: pointer;
 }
 
-.p {
-    margin-left: 3px;
-    margin-right: 3px;
-}
 
 .followBtn {
     border-radius: 10px;
