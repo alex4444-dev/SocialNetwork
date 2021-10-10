@@ -1,5 +1,5 @@
 body {
-    color: white;
+    color: rgba(0, 0, 0, 0.68);
 }
 
 .userPhoto {
@@ -8,7 +8,7 @@ body {
 }
 
 .selectedPage  {
-    color: yellow;
+    color: black;
     font-weight: bold;
     margin-left: 3px;
     margin-right: 3px;
@@ -22,20 +22,11 @@ body {
 }
 
 
-.followBtn {
-    border-radius: 10px;
-}
 
-.followBtn:hover {
-    cursor: pointer;
-}
 
-.unfollowBtn {
-    border-radius: 10px;
-}
 
-.unfollowBtn:hover {
-    cursor: pointer;
-}
+
+
+
 
 

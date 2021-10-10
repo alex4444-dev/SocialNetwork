@@ -11,7 +11,16 @@
 .app-wrapper-content{
 
   grid-area: c;
-  background-color: cornflowerblue;
+  background-color: rgba(241, 241, 247, 0.3);
+}
+
+button {
+  margin: 3px;
+  border-radius: 8px;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 

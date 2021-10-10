@@ -16,9 +16,13 @@
 }
 
 .messages .message {
-    color: white;
+    color: black;
 }
 
 .dialog {
 
+}
+
+.sendBtn {
+    border-radius: 10px;
 }

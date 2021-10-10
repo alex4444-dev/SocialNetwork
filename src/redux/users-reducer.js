@@ -1,8 +1,8 @@
-import {usersAPI as userAPI, usersAPI} from "../api/api";
+import {usersAPI} from "../api/api";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET-USERS';
+const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
@@ -57,7 +57,7 @@ const usersReducer = (state = initialState, action) => {
             return {...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress,  action.userId]
-                    : [...state.followingInProgress.filter(id => id != action.userId)]
+                    : [...state.followingInProgress.filter(id => id !== action.userId)]
             }
         }
         default:
@@ -76,7 +76,9 @@ export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS
 
 export const getUsers = (currentPage, pageSize) => {
    return (dispatch) => {
+
         dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(currentPage));
 
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false));

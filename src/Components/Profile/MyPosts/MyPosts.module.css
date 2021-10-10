@@ -5,3 +5,7 @@
 .posts {
     margin-top: 5px;
 }
+
+.sendBtn {
+    border-radius: 10px;
+}
