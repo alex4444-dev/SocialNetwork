@@ -7,23 +7,6 @@ body {
     height: 100px;
 }
 
-.selectedPage  {
-    color: black;
-    font-weight: bold;
-    margin-left: 3px;
-    margin-right: 3px;
-}
-
-
-.selectedPage:hover {
-    height: 34px;
-    width: 100px;
-    cursor: pointer;
-}
-
-
-
-
 
 
 
