@@ -2,22 +2,18 @@ import React, {Component} from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
-import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
-import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginPage from "./Components/Login/Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./Components/common/Preloader/Preloader";
-import store from "./redux/redux-store";
+import {withSuspense} from "./hoc/withSuspense";
 
-/*
-setInterval(() => {
-    store.dispatch({type: "FAKE"})
-}, 1000);
-*/
+const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileContainer'));
+
 
 class App extends Component {
     componentDidMount() {
@@ -34,10 +30,10 @@ class App extends Component {
                 <Navbar/>
                 <div class='app-wrapper-content'>
                     <Route path='/dialogs'
-                           render={() => <DialogsContainer/>}/>
+                           render={withSuspense(DialogsContainer)}/>
 
                     <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer/>}/>
+                           render={withSuspense(ProfileContainer)}/>
 
                     <Route path='/users'
                            render={() => <UsersContainer/>}/>
