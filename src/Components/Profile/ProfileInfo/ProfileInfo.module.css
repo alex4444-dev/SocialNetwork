@@ -7,17 +7,20 @@
     font-weight: bold;
     top: 75px;
     left: 450px;
+    right: 100px;
 }
 
 .infoBlock{
     position: absolute;
     top: 100px;
     left: 450px;
+    right: 100px;
 }
 .infoForm{
     position: absolute;
     top: 120px;
     left: 450px;
+    right: 100px;
 }
 
 
