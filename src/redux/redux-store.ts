@@ -10,7 +10,7 @@ import appReducer from "./app-reducer";
 
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     messagesPage: dialogsReducer,
     sidebar: sidebarReducer,
@@ -20,11 +20,13 @@ let reducers = combineReducers({
     app: appReducer
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(compose(applyMiddleware(thunkMiddleware))));
+type RootReducerType = typeof rootReducer;
+export type AppStateType = ReturnType<RootReducerType>
 
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// @ts-ignore
+const store = createStore(rootReducer, composeEnhancers(compose(applyMiddleware(thunkMiddleware))))
 
-
-//let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 export default store;

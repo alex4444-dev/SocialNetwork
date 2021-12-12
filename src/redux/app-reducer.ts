@@ -1,14 +1,18 @@
 import { getAuthUserData } from "./auth-reducer";
+import boolean from "async-validator/dist-types/validator/boolean";
 
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
+export type InitialStateType = {
+    initialized: boolean
+};
 
-let initialState = {
+let initialState: InitialStateType = {
     initialized: false
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -20,12 +24,15 @@ const appReducer = (state = initialState, action) => {
     }
 }
 
+type InitializedSuccessActionType = {
+    type: typeof INITIALIZED_SUCCESS
+}
 
-export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS });
-export const initializeApp = () => (dispatch) => {
+
+export const initializedSuccess = (): InitializedSuccessActionType => ({ type: INITIALIZED_SUCCESS });
+export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(getAuthUserData());
 
-    //dispatch(initializedSuccess());
     Promise.all([promise]).then(() => {
         dispatch(initializedSuccess());
     });

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import UsersContainer from "./Components/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginPage from "./Components/Login/Login";
@@ -16,8 +16,16 @@ const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileCo
 
 
 class App extends Component {
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        alert("Some error occured");
+    }
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -29,6 +37,9 @@ class App extends Component {
                 <HeaderContainer/>
                 <Navbar/>
                 <div class='app-wrapper-content'>
+                    <Switch>
+                        <Route exact path='/'
+                               render={() => <Redirect to={"/profile"}/>}/>
                     <Route path='/dialogs'
                            render={withSuspense(DialogsContainer)}/>
 
@@ -40,6 +51,11 @@ class App extends Component {
 
                     <Route path='/login'
                            render={() => <LoginPage/>}/>
+
+                        <Route path='*'
+                               render={() => <div>404 NOT FOUND</div>}/>
+
+                    </Switch>
                 </div>
             </div>
         );
