@@ -21,6 +21,7 @@ const {Content, Footer, Sider} = Layout
 
 const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileContainer'))
+const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'))
 
 export type MapPropsType = {}
 type DispatchPropsType = {
@@ -30,7 +31,7 @@ type DispatchPropsType = {
 
 const SuspendedDialogs = withSuspense(DialogsContainer)
 const SuspendedProfile = withSuspense(ProfileContainer)
-
+const SuspendedChatPage = withSuspense(ChatPage)
 
 
 class App extends Component<MapPropsType & DispatchPropsType> {
@@ -72,21 +73,20 @@ class App extends Component<MapPropsType & DispatchPropsType> {
                             >
                                 <SubMenu key="sub1" icon={<UserOutlined/>} title="My Profile">
                                     <Menu.Item key="1"> <Link to="/profile">Profile</Link></Menu.Item>
-                                    <Menu.Item key="2"> <Link to="/dialogs">Messages</Link></Menu.Item>
-                                    <Menu.Item key="3">option3</Menu.Item>
-                                    <Menu.Item key="4">option4</Menu.Item>
+                                    {/*<Menu.Item key="3">option3</Menu.Item>
+                                    <Menu.Item key="4">option4</Menu.Item>*/}
                                 </SubMenu>
                                 <SubMenu key="sub2" icon={<LaptopOutlined/>} title="Developers">
                                     <Menu.Item key="5"><Link to="/developers">Developers</Link></Menu.Item>
-                                    <Menu.Item key="6">option6</Menu.Item>
+                                    {/*<Menu.Item key="6">option6</Menu.Item>
                                     <Menu.Item key="7">option7</Menu.Item>
-                                    <Menu.Item key="8">option8</Menu.Item>
+                                    <Menu.Item key="8">option8</Menu.Item>*/}
                                 </SubMenu>
-                                <SubMenu key="sub3" icon={<NotificationOutlined/>} title="subnav 3">
-                                    <Menu.Item key="9"><Link to="/chat">Chat</Link></Menu.Item>
-                                    <Menu.Item key="10">option10</Menu.Item>
-                                    <Menu.Item key="11">option11</Menu.Item>
-                                    <Menu.Item key="12">option12</Menu.Item>
+                                <SubMenu key="sub3" icon={<NotificationOutlined/>} title="Communication">
+                                    <Menu.Item key="1"><Link to="/chat">Chat</Link></Menu.Item>
+                                    <Menu.Item key="2"> <Link to="/dialogs">Messages</Link></Menu.Item>
+                                    {/*<Menu.Item key="11">option11</Menu.Item>
+                                    <Menu.Item key="12">option12</Menu.Item>*/}
                                 </SubMenu>
                             </Menu>
                         </Sider>
@@ -107,6 +107,9 @@ class App extends Component<MapPropsType & DispatchPropsType> {
 
                                 <Route path='/login'
                                        render={() => <LoginPage/>}/>
+
+                                <Route path='/chat'
+                                       render={() => <SuspendedChatPage/>}/>
 
                                 <Route path='/dialogs'
                                        render={() => <SuspendedDialogs/>}/>
