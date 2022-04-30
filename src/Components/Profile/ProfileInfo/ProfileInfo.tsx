@@ -1,10 +1,11 @@
 import React, {ChangeEvent, useState} from 'react';
-import s from './ProfileInfo.module.css';
+import s from './ProfileInfo.module.scss';
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/no_avatar.png";
 import ProfileDataForm from "./ProfileDataForm";
 import {ContactsType, ProfileType} from '../../../types/types';
+import gallery_img from '../../../assets/images/gallery_img.png'
 
 type PropsType = {
     profile: ProfileType | null
@@ -40,14 +41,13 @@ const ProfileInfo: React.FC<PropsType> = ({profile, status, updateStatus, isOwne
     return (
         <div>
             <div className={s.descriptionBlock}>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
-                {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+                {isOwner && <input type={"file"}  onChange={onMainPhotoSelected} />}
 
                 { editMode
                     ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={() => {setEditMode(true)} } profile={profile} isOwner={isOwner}/> }
-
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     )
@@ -59,24 +59,24 @@ type ProfileDataPropsType = {
     goToEditMode: () => void
 }
 const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode}) => {
-    return <div>
-        {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
-        <div>
+    return <div className={s.majorInfo}>
+        {isOwner && <div><button className={s.editButton} onClick={goToEditMode}>✎</button></div>}
+        <div className={s.fullName}>
             <b>Full name</b>: {profile.fullName}
         </div>
         <div>
             <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
         </div>
         {profile.lookingForAJob &&
-        <div>
+        <div className={s.skills}>
             <b>My professional skills</b>: {profile.lookingForAJobDescription}
         </div>
         }
 
-        <div>
+        <div className={s.majorInfo}>
             <b>About me</b>: {profile.aboutMe}
         </div>
-        <div>
+        <div className={s.contacts}>
             <b>Contacts</b>: {
             Object
                 .keys(profile.contacts)

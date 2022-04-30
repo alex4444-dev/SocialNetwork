@@ -1,0 +1,11 @@
+.row {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.row > div {
+    border: 1px dotted;
+}
+.textArea {
+    width: 100%;
+}

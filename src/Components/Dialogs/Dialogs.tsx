@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Dialogs.module.css';
+import s from './Dialogs.module.scss';
 import DialogItem from "./DialogItems/DialogItem";
 import Message from "./Message/Message";
 import AddMessageForm from "./AddMessageForm/AddMessageForm";
@@ -25,14 +25,18 @@ const Dialogs: React.FC<PropsType> = (props) => {
     }
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
-                { dialogsElements }
+        <div className={s.dialogsPage}>
+            <div className={s.dialogsPageBlock}>
+                <div className={s.dialogs}>
+                    <div className={s.dialogsItems}>
+                        { dialogsElements }
+                    </div>
+                    <div className={s.fieldWithoutMessages}>
+                        { messagesElements }
+                    </div>
+                </div>
+                <AddMessageForm onSubmit={addNewMessage} />
             </div>
-            <div className={s.messages}>
-                <div>{ messagesElements }</div>
-            </div>
-            <AddMessageForm onSubmit={addNewMessage} />
         </div>
     )
 }

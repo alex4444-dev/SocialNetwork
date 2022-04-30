@@ -1,5 +1,5 @@
 import React from "react";
-import s from './ProfileInfo.module.css';
+import s from './ProfileInfo.module.scss';
 import {createField, GetStringKeys, Input, Textarea} from "../../common/Forms/formsControl";
 import {InjectedFormProps, reduxForm} from "redux-form";
 import style from "../../common/Forms/formsControl.module.css";
@@ -14,7 +14,7 @@ type ProfileTypeKeys = GetStringKeys<ProfileType>
 
 const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = ({handleSubmit, profile, error}) => {
     return <form onSubmit={handleSubmit}>
-        <div><button>save</button></div>
+        <div><button>💾</button></div>
         {error && <div className={style.formSummaryError}>
             {error}
         </div>

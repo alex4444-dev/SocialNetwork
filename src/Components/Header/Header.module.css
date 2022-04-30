@@ -6,7 +6,7 @@
 
 
 .header img {
-    width: 50px;
+    width: 80px;
 }
 
 .loginBlock {
@@ -15,6 +15,10 @@
 
 .loginBlock a {
     color: white;
+}
+
+.loginBlock button {
+    width: 16px;
 }
 
 

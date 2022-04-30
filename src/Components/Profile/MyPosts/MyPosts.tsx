@@ -1,7 +1,8 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 import AddPostForm, {AddPostFormValuesType} from './AddPostForm/AddPostForm';
+import commonStyle from "../Profile.module.scss";
 import {PostType} from "../../../types/types";
 
 export type MapPropsType = {
@@ -24,6 +25,7 @@ const MyPosts: React.FC<MapPropsType & DispatchPropsType> = props => {
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
+            {/*<hr className={commonStyle.hr}/>*/}
             <AddPostForm onSubmit={onAddPost}/>
             <div className={s.posts}>
                 {postsElements}
