@@ -5,7 +5,7 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/no_avatar.png";
 import ProfileDataForm from "./ProfileDataForm";
 import {ContactsType, ProfileType} from '../../../types/types';
-import gallery_img from '../../../assets/images/gallery_img.png'
+
 
 type PropsType = {
     profile: ProfileType | null
@@ -43,7 +43,9 @@ const ProfileInfo: React.FC<PropsType> = ({profile, status, updateStatus, isOwne
             <div className={s.descriptionBlock}>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
-                {isOwner && <input type={"file"}  onChange={onMainPhotoSelected} />}
+                {isOwner && <div className={s.uploadContainer}><input id={"file-input"} type={"file"}  onChange={onMainPhotoSelected} /></div>}
+                {<span><label htmlFor={"file-input"}>📁 Загрузить фото</label></span>}
+
 
                 { editMode
                     ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
