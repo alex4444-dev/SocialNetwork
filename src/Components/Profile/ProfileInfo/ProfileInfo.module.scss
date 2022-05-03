@@ -2,8 +2,6 @@
 @import "../../common/Styles/Sass/Variables";
 
 
-
-
 .descriptionBlock {
     width: 100%;
     background-color: white;
@@ -97,12 +95,15 @@
         @include size(250px, 34px);
         cursor: pointer;
         background: rgb(26, 26, 26);
+        opacity: 0.0;
+        filter: alpha(opacity=0);
         color: #f1f1f1;
         border: 1px solid transparent;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
         font-weight: bold;
+        font-size: 20px;
         transition: opacity 1s,
-        visibility 0s 1s;
+            visibility 0s 1s;
 
 
         @media screen and (max-width: 1000px) {
@@ -114,7 +115,8 @@
         }
 
         &:hover {
-            opacity: 9999;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
             transition: opacity 1s,
             visibility 1s;
         }
@@ -275,3 +277,4 @@
         }
     }
 }
+
