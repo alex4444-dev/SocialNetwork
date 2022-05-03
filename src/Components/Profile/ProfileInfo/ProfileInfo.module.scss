@@ -1,32 +1,31 @@
 @import "../../common/Styles/Sass/Mixins";
 @import "../../common/Styles/Sass/Variables";
 
-.descriptionBlock {
-    padding: 10px;
-}
 
-.status {
-    position: absolute;
-    font-weight: bold;
-    top: 75px;
-    left: 450px;
-}
+
 
 .descriptionBlock {
     width: 100%;
     background-color: white;
-    padding-bottom: 10px;
+    padding: 10px;
     border-radius: $blockBorderRadius;
     margin-bottom: 20px;
     @include boxShadow();
 
+    .status {
+        position: absolute;
+        font-weight: bold;
+        top: 75px;
+        left: 450px;
+    }
+
     .mainPhoto {
-        width: 50%;
-        border-radius: 50%;
+        width: 250px;
 
         & img {
             @include size(100%, 200px);
             border-radius: $blockBorderRadius;
+
             @media screen and (max-width: 650px) {
                 height: 150px;
             }
@@ -34,13 +33,15 @@
 
         .mainPhoto {
             position: relative;
-            width: 50%;
+            width: 250px;
             margin: 0 auto;
             top: -120px;
+
             @media screen and (max-width: 1000px) {
                 width: 170px;
                 top: -90px;
             }
+
             @media screen and (max-width: 850px) {
                 width: 150px;
             }
@@ -50,114 +51,76 @@
                 right: 25px;
                 z-index: 1;
                 border: 5px solid white;
-                width: 200px;
+                width: 250px;
                 border-radius: 50%;
                 @include boxShadow();
+
                 @media screen and (max-width: 1000px) {
                     @include size(170px, 170px);
                     right: 10px;
                 }
+
                 @media screen and (max-width: 850px) {
                     @include size(130px, 130px);
                 }
             }
 
-
-
-            .mainPhoto  {
-                position: absolute;
-                right: 10%;
-                z-index: 1;
-                top: 165px;
-                @media screen and (max-width: 1000px) {
-                    top: 130px;
-                }
-                @media screen and (max-width: 850px) {
-                    top: 112px;
-                }
-
-                & input {
-                    display: none;
-                }
-
-                & label {
-                    display: inline-block;
-                    @include size(34px, 34px);
-                    border-radius: 50%;
-                    background: white;
-                    border: 1px solid transparent;
-                    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
-                    cursor: pointer;
-                    font-weight: normal;
-                    transition: all .2s ease-in-out;
-                    @media screen and (max-width: 1000px) {
-                        @include size(27px, 27px);
-                    }
-                    @media screen and (max-width: 850px) {
-                        @include size(25px, 25px);
-                    }
-                }
-
-                & label:hover {
-                    background: #f1f1f1;
-                    border-color: #d6d6d6;
-                }
-
-                & label:after {
-                    content: "✎";
-                    font-size: 20px;
-                    color: #757575;
-                    position: absolute;
-                    top: 4px;
-                    left: 0;
-                    right: 0;
-                    text-align: left;
-                    margin: auto;
-                    @media screen and (max-width: 1000px) {
-                        font-size: 17px;
-                    }
-                    @media screen and (max-width: 850px) {
-                        font-size: 15px;
-                    }
-                }
-            }
         }
     }
 }
 
 
-.uploadContainer input[type=file] {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    position: absolute;
-    z-index: -10;
-}
-
-.uploadContainer label {
-    font-weight: bold;
-
-}
-
-.uploadContainer label:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.uploadContainer input[type=file]:focus + label {
+.uploadContainer {
     display: inline-block;
-    cursor: pointer;
-    text-decoration: underline;
-    opacity: 10;
-    z-index: 10;
-    border: 1px solid transparent;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+    position: relative;
+    top: 105px;
+    right: 250px;
+
+    @media screen and (max-width: 1000px) {
+        top: 100px;
+    }
+
+    @media screen and (max-width: 850px) {
+        top: 100px;
+    }
+
+    & input {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        position: absolute;
+        z-index: -10;
+    }
+
+    & label {
+        display: inline-block;
+        @include size(250px, 34px);
+        cursor: pointer;
+        background: rgb(26, 26, 26);
+        color: #f1f1f1;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+        font-weight: bold;
+        transition: opacity 1s,
+        visibility 0s 1s;
+
+
+        @media screen and (max-width: 1000px) {
+            @include size(27px, 27px);
+        }
+
+        @media screen and (max-width: 850px) {
+            @include size(25px, 25px);
+        }
+
+        &:hover {
+            opacity: 9999;
+            transition: opacity 1s,
+            visibility 1s;
+        }
+    }
 }
 
-.uploadContainer label.focus {
-    outline: 1px solid #0078d7;
-    outline: -webkit-focus-ring-color auto 5px;
-}
 
 
 .infoForm {
@@ -184,10 +147,12 @@
             font-weight: normal;
             font-size: 25px;
             transition: all .2s ease-in-out;
+
             @media screen and (max-width: 1000px) {
                 @include size(27px, 27px);
                 font-size: 17px;
             }
+
             @media screen and (max-width: 850px) {
                 @include size(25px, 25px);
                 font-size: 15px;
@@ -215,9 +180,11 @@
         @include flex(column, center, center);
         margin-bottom: 10px;
         margin-left: 40px;
+
         @media screen and (max-width: 1000px) {
             margin-left: 27px;
         }
+
         @media screen and (max-width: 850px) {
             margin-left: 25px;
         }
@@ -226,12 +193,15 @@
             font-size: xx-large;
             margin-bottom: 10px;
             font-weight: bolder;
+
             @media screen and (max-width: 1000px) {
                 font-size: 25px;
             }
+
             @media screen and (max-width: 850px) {
                 font-size: 20px;
             }
+
             @media screen and (max-width: 450px) {
                 font-size: 15px;
             }
@@ -239,12 +209,15 @@
 
         .skills {
             margin-bottom: 10px;
+
             @media screen and (max-width: 1000px) {
                 font-size: 16px;
             }
+
             @media screen and (max-width: 850px) {
                 font-size: 15px;
             }
+
             @media screen and (max-width: 450px) {
                 font-size: 12px;
             }
@@ -259,9 +232,11 @@
             height: 30px;
             font-size: 13px;
         }
+
         @media screen and (max-width: 850px) {
             font-size: 11px;
         }
+
         @media screen and (max-width: 450px) {
             font-size: 9px;
             height: 25px;
@@ -280,12 +255,15 @@
 
         .contact {
             margin-bottom: 5px;
+
             @media screen and (max-width: 1000px) {
                 font-size: 13px;
             }
+
             @media screen and (max-width: 850px) {
                 font-size: 11px;
             }
+
             @media screen and (max-width: 450px) {
                 font-size: 9px;
             }
@@ -297,4 +275,3 @@
         }
     }
 }
-
