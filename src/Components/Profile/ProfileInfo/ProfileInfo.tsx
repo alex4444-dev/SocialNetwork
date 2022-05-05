@@ -42,9 +42,12 @@ const ProfileInfo: React.FC<PropsType> = ({ profile, status, updateStatus, isOwn
         <div>
             <div className={s.descriptionBlock}>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} />
-                {isOwner && <div className={s.uploadContainer}><input id={"file-input"} type={"file"} onChange={onMainPhotoSelected} />
-                    <label htmlFor={"file-input"}>✎ Загрузить фото</label></div>}
+                <div className={s.mainPhoto}>
+                    <img src={profile.photos.large || userPhoto} />
+                    {isOwner && <div className={s.uploadContainer}><input id={"file-input"} type={"file"} onChange={onMainPhotoSelected} />
+                        <label htmlFor={"file-input"}>✎ Загрузить фото</label></div>}
+                </div>
+
 
 
                 {editMode

@@ -15,25 +15,30 @@
         font-weight: bold;
         top: 75px;
         left: 450px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
-    .mainPhoto {
-        width: 250px;
+    .mainPhoto {    
+        width: 290px;
+        margin-left: 260px;
+        margin-right: 260px;
+        
+        
 
         & img {
             @include size(100%, 200px);
             border-radius: $blockBorderRadius;
 
             @media screen and (max-width: 650px) {
-                height: 150px;
+                height: 350px;
             }
         }
 
         .mainPhoto {
-            position: relative;
-            width: 250px;
+            position: fixed;
             margin: 0 auto;
-            top: -120px;
+            top: -100px;
 
             @media screen and (max-width: 1000px) {
                 width: 170px;
@@ -46,11 +51,8 @@
 
             & img {
                 position: absolute;
-                right: 25px;
                 z-index: 1;
                 border: 5px solid white;
-                width: 250px;
-                border-radius: 50%;
                 @include boxShadow();
 
                 @media screen and (max-width: 1000px) {
@@ -71,11 +73,10 @@
 .uploadContainer {
     display: inline-block;
     position: relative;
-    top: 105px;
-    right: 250px;
+    
 
     @media screen and (max-width: 1000px) {
-        top: 100px;
+       top: 100px;
     }
 
     @media screen and (max-width: 850px) {
@@ -92,9 +93,13 @@
 
     & label {
         display: inline-block;
-        @include size(250px, 34px);
+        @include size(290px, 34px);
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 2px solid;
         cursor: pointer;
-        background: rgb(26, 26, 26);
+        background: rgb(115, 82, 82);
         opacity: 0.0;
         filter: alpha(opacity=0);
         color: #f1f1f1;
@@ -105,14 +110,23 @@
         transition: opacity 1s,
             visibility 0s 1s;
 
+        @media screen and (max-width: 1600px) {
+            font-size: 14px;
+            top: 100px;
+        }
 
         @media screen and (max-width: 1000px) {
-            @include size(27px, 27px);
+            font-size: 14px;
         }
 
         @media screen and (max-width: 850px) {
-            @include size(25px, 25px);
+            font-size: 11px;
         }
+        
+        @media screen and (max-width: 450px) {
+            font-size: 9px;
+        }
+        
 
         &:hover {
             opacity: 0.8;
