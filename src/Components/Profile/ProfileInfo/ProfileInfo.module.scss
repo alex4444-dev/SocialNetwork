@@ -20,25 +20,22 @@
     }
 
     .mainPhoto {    
-        width: 290px;
-        margin-left: 260px;
-        margin-right: 260px;
+        width: 250px;   
+        margin: 0 auto;
         
-        
-
         & img {
             @include size(100%, 200px);
             border-radius: $blockBorderRadius;
 
             @media screen and (max-width: 650px) {
-                height: 350px;
+                height: 380px;
             }
         }
 
         .mainPhoto {
             position: fixed;
             margin: 0 auto;
-            top: -100px;
+            
 
             @media screen and (max-width: 1000px) {
                 width: 170px;
@@ -76,11 +73,11 @@
     
 
     @media screen and (max-width: 1000px) {
-       top: 100px;
+      top: -2px;
     }
 
     @media screen and (max-width: 850px) {
-        top: 100px;
+       top: -2px;
     }
 
     & input {
@@ -93,7 +90,7 @@
 
     & label {
         display: inline-block;
-        @include size(290px, 34px);
+        @include size(250px, 34px);
         border-top: none;
         border-left: none;
         border-right: none;
