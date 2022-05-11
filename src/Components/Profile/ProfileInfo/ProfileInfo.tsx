@@ -69,7 +69,7 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEdi
         <div className={s.fullName}>
             <b>Full name</b>: {profile.fullName}
         </div>
-        <div>
+        <div className={s.checkboxJob}>
             <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
         </div>
         {profile.lookingForAJob &&

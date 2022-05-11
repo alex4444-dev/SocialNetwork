@@ -14,12 +14,34 @@
     color: red;
 }
 
-.formControl input,
+
+.formControl input {
+    width: 290px;
+    padding: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+
+.formControl input[type="checkbox"]{
+    display: block;
+    position: relative;
+    width: 1em;
+    height: 1em;  
+    border: 1px solid #adb5bd;
+    border-radius: 0.25em;
+    margin-top: 0.05em;
+    margin-bottom: 0.01em;
+    margin-right: 0.5em;
+    
+}
+
 .formControl textarea
 {
-    width: 100%;
+    width: 98%;
     padding: 5px;
     margin: 0 auto;
     border-radius: 10px;
-
 }

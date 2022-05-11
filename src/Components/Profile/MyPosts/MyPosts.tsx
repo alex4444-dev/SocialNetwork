@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
-import AddPostForm, {AddPostFormValuesType} from './AddPostForm/AddPostForm';
+import AddPostForm, { AddPostFormValuesType } from './AddPostForm/AddPostForm';
 import commonStyle from "../Profile.module.scss";
-import {PostType} from "../../../types/types";
+import { PostType } from "../../../types/types";
 
 export type MapPropsType = {
     posts: Array<PostType>
@@ -16,7 +16,7 @@ const MyPosts: React.FC<MapPropsType & DispatchPropsType> = props => {
     let postsElements =
         [...props.posts]
             .reverse()
-            .map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
+            .map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />);
 
     let onAddPost = (values: AddPostFormValuesType) => {
         props.addPost(values.newPostText);
@@ -25,8 +25,8 @@ const MyPosts: React.FC<MapPropsType & DispatchPropsType> = props => {
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
-            {/*<hr className={commonStyle.hr}/>*/}
-            <AddPostForm onSubmit={onAddPost}/>
+            <hr className={commonStyle.hr} />
+            <AddPostForm onSubmit={onAddPost} />
             <div className={s.posts}>
                 {postsElements}
             </div>
