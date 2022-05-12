@@ -1,12 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import s from './ChatPage.module.scss'
 import { ChatMessageAPIType } from '../../api/chat-api'
 import { useDispatch, useSelector } from 'react-redux'
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/chat-reducer'
 import { AppStateType } from '../../redux/redux-store'
+import { WRITE_MESSAGE } from "../../Components/common/constants/index";
+import { Nullable } from './../../types/types'
+
 
 
 const ChatPage: React.FC = () => {
-    return <div>
+    return <div className={s.chatPage}>
         <Chat />
     </div>
 }
@@ -25,7 +29,7 @@ const Chat: React.FC = () => {
         }
     }, [])
 
-    return <div>
+    return <div className={s.chatPageBlock}>
         {status === 'error' && <div>Some error occured. Please refresh the page</div>}
         <>
             <Messages />
@@ -54,7 +58,7 @@ const Messages: React.FC<{}> = ({ }) => {
         }
     }, [messages])
 
-    return <div style={{ height: '400px', overflowY: 'auto' }} onScroll={scrollHandler}>
+    return <div className={s.messagesPart} style={{ height: '400px', overflowY: 'auto' }} onScroll={scrollHandler}>
         {messages.map((m, index) => <Message key={m.id} message={m} />)}
         <div ref={messagesAnchorRef}></div>
     </div>
@@ -63,17 +67,21 @@ const Messages: React.FC<{}> = ({ }) => {
 
 const Message: React.FC<{ message: ChatMessageAPIType }> = React.memo(({ message }) => {
     console.log(">>>>>>Message")
-    return <div>
-        <img src={message.photo} style={{ width: '30px' }} /> <b>{message.userName}</b>
-        <br />
-        {message.message}
-        <hr />
+    return <div className={s.message}>
+        <div className={s.userInfoContainer}>
+            <img src={message.photo} /> <b>{message.userName}</b>
+            <br />
+            {message.message}
+            <hr />
+        </div>
+
     </div>
 })
 
 
 const AddMessageForm: React.FC<{}> = () => {
     const [message, setMessage] = useState('')
+    const [error, setError] = useState<Nullable<boolean>>(null)
     const dispatch = useDispatch()
 
     const status = useSelector((state: AppStateType) => state.chat.status)
@@ -86,15 +94,24 @@ const AddMessageForm: React.FC<{}> = () => {
         dispatch(sendMessage(message))
         setMessage('')
     }
+    const onTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setMessage(e.currentTarget.value)
+        setError(false)
+    }
 
-    return <div>
-        <div>
-            <textarea style={{ width: '860px', height: '60px' }} onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
+    return (
+        <div className={s.addChatMessageForm}>
+            <textarea onChange={onTextareaChange}
+                value={message}
+                className={!error ? s.textField : `${s.textField} ${s.errorField}`}
+                placeholder={WRITE_MESSAGE}
+            // onKeyPress={onTextareaKeyPress}
+            />
+            <div>
+                <button disabled={status !== 'ready'} onClick={sendMessageHandler}>Send</button>
+            </div>
         </div>
-        <div>
-            <button disabled={status !== 'ready'} onClick={sendMessageHandler}>Send</button>
-        </div>
-    </div>
+    )
 }
 
 export default ChatPage

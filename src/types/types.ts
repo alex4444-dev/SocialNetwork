@@ -43,3 +43,5 @@ export type MessageType = {
     id: number,
     message: string
 };
+
+export type Nullable<T> = T | null;
