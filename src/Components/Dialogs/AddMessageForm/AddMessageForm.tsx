@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
+import React from 'react';
 import s from "../Dialogs.module.scss";
-import { Field, InjectedFormProps, reduxForm } from "redux-form";
-import { createField, Input, Textarea } from '../../common/Forms/formsControl';
+import { InjectedFormProps, reduxForm } from "redux-form";
+import { createField, Textarea } from '../../common/Forms/formsControl';
 import { maxLengthCreator, required } from "../../../Utils/Validators/Validators";
 import { NewMessageFormValuesType } from '../Dialogs';
-import { WRITE_MESSAGE } from "./../../common/constants/index";
+
 
 
 const maxLength50 = maxLengthCreator(50);
@@ -15,14 +15,16 @@ type PropsType = {}
 const AddMessageForm: React.FC<InjectedFormProps<NewMessageFormValuesType, PropsType> & PropsType>
     = (props) => {
         return (
-            <form onSubmit={props.handleSubmit}>
-                <div className={s.textArea}>
-                    {createField<NewMessageFormValuesKeysType>("Enter your message", 'newMessageBody', [required, maxLength50], Textarea)}
+            <div className={s.addMessageFormContainer}>
+                <div className={s.addMessageForm}>
+                    <div className={s.textField}>
+                        {createField<NewMessageFormValuesKeysType>("Enter your message", 'newMessageBody', [required, maxLength50], Textarea)}
+                        <div>
+                            <button onClick={props.handleSubmit}>Send</button>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button>Send</button>
-                </div>
-            </form>
+            </div>
         )
     }
 

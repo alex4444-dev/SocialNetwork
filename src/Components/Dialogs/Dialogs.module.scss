@@ -150,7 +150,7 @@
 
 
         .addMessageFormContainer {
-            width: 833px;
+            width: 100%;
             @include flex(row, space-between, flex-start);
             @media screen and (max-width: 1107px) {
                 width: 627px;
@@ -165,14 +165,16 @@
                 @include flex(column, flex-start, flex-start);
 
                 .textField {
-                    padding: 10px;
-                    width: 700px;
+                    padding: 1px;
+                    width: 800px;
                     min-height: 50px;
+                    margin: 0 auto;
                     border: 1px solid #d4d6d3;
                     font-family: 'Montserrat', sans-serif;
                     resize: none;
                     outline: none;
                     border-radius: 5px;
+                    margin-bottom: 10px;
                     @media screen and (max-width: 1107px) {
                         width: 496px;
                     }
@@ -187,17 +189,20 @@
                         min-height: 30px;
                     }
                 }
+
             }
             & button {
                 @include button(100px, 35px);
                 @media screen and (max-width: 660px) {
                     @include size(65px, 30px);
                     font-size: 10px;
+                    justify-content: flex-end;
                 }
             }
 
             & button:hover {
-                background-color: #3a816e;
+                background-color: #686b6a;
+                color: white;
             }
         }
     }

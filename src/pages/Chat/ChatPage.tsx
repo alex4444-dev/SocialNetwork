@@ -105,7 +105,6 @@ const AddMessageForm: React.FC<{}> = () => {
                 value={message}
                 className={!error ? s.textField : `${s.textField} ${s.errorField}`}
                 placeholder={WRITE_MESSAGE}
-            // onKeyPress={onTextareaKeyPress}
             />
             <div>
                 <button disabled={status !== 'ready'} onClick={sendMessageHandler}>Send</button>
