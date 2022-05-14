@@ -1,0 +1,31 @@
+@import "../../../common/Styles/Sass/Mixins.scss";
+@import "../../../common/Styles/Sass/Variables";
+
+.addPostForm { 
+    padding-left: 10px;
+
+    & input {
+        width: 800px;
+        height: 160px;
+        padding-left: 5px;
+        text-align: left;
+        }
+    & button {
+        @include button(100px, 35px);
+
+        @media screen and (max-width: 550px) {
+                width: 70px;
+                height: 30px;
+                font-size: 10px;
+            }
+        }
+
+    & button:hover {
+            background-color: #767978;
+            color: white;
+        }
+}
+
+
+
+

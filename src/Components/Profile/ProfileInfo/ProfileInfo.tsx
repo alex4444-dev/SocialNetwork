@@ -64,20 +64,21 @@ type ProfileDataPropsType = {
     goToEditMode: () => void
 }
 const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEditMode }) => {
-    return <div className={s.majorInfo}>
-        {isOwner && <div><button className={s.editButton} onClick={goToEditMode}>✎</button></div>}
-        <div className={s.fullName}>
-            <b>Full name</b>: {profile.fullName}
-        </div>
-        <div className={s.checkboxJob}>
-            <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
-        </div>
-        {profile.lookingForAJob &&
-            <div className={s.skills}>
-                <b>My professional skills</b>: {profile.lookingForAJobDescription}
+    return <div className={s.descriptionBlock}>
+        <div className={s.infoForm}>
+            {isOwner && <div><button onClick={goToEditMode}>✎</button></div>}
+            <div className={s.fullName}>
+                <b>Full name</b>: {profile.fullName}
             </div>
-        }
-
+            <div className={s.checkboxJob}>
+                <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
+            </div>
+            {profile.lookingForAJob &&
+                <div className={s.skills}>
+                    <b>My professional skills</b>: {profile.lookingForAJobDescription}
+                </div>
+            }
+        </div>
         <div className={s.majorInfo}>
             <b>About me</b>: {profile.aboutMe}
         </div>
@@ -89,6 +90,7 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEdi
                         return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />
                     })}
         </div>
+
     </div>
 }
 
