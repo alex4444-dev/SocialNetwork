@@ -1,0 +1,85 @@
+@import '../common/Styles/Sass/Mixins.scss';
+@import '../common/Styles/Sass/Variables.scss';
+
+.loginPage {
+    width: 100%;
+    min-height: 70vh;
+
+    .loginBlock {
+        margin: 4% auto;
+        @include size(620px, 400px);
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid #cbc5c8;
+        @include flex(column, center, center);
+        @include boxShadow();
+
+        @media screen and (max-width: 850px) {
+            @include size(300px, 300px);
+            margin: 6% auto;
+        }
+
+        & h1 {
+            font-size: 30px;
+
+            @media screen and (max-width: 850px) {
+                font-size: 30px;
+            }
+        }
+
+        & input {
+            @include size(450px, 35px);
+            margin-bottom: 10px;
+            border: 3px solid #cbc5c8;
+            border-radius: 10px;
+            padding-left: 5px;
+
+            @media screen and (max-width: 850px) {
+                width: 200px;
+                height: 25px;
+                font-size: 12px;
+            }
+        }
+
+        .checkboxArea {
+            width: 400px;
+            position: relative;
+            left: -20px;
+            justify-content: left;
+            margin: 0 auto;
+            padding-left: 0;
+           
+            & input[type='checkbox'] {
+                    width: 350px;
+                    position: relative;
+                    display: block;
+                    float: left;
+                    width: 1em;
+                    height: 1em;
+                    border: 3px solid #cbc5c8;
+                    border-radius: 0.25em;
+            
+                    @media screen and (max-width: 900px) {
+                        width: 213px;
+                        font-size: 12px;
+                    }
+                }
+        }
+
+        
+
+        & button {
+            @include button(100px, 35px);
+
+            @media screen and (max-width: 900px) {
+                width: 70px;
+                height: 30px;
+                font-size: 12px;
+            }
+        }
+
+        & button:hover {
+            background-color: #7d7e7e;
+        }
+    }
+}

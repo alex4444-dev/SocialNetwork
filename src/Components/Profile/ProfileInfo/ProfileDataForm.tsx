@@ -27,8 +27,8 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & Prop
                 <div>
                     <b>Full name</b>: {createField<ProfileTypeKeys>("Full name", "fullName", [], Input)}
                 </div>
-                <div>
-                    <b>Looking for a job</b>: {createField<ProfileTypeKeys>("", "lookingForAJob", [], Input, { type: "checkbox" })}
+                <div className={style.checkboxArea}>
+                    <label>Looking for a job</label>: {createField<ProfileTypeKeys>("", "lookingForAJob", [], Input, { type: "checkbox" })}
                 </div>
                 <div>
                     <b>My professional skills</b>:

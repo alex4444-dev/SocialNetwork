@@ -4,10 +4,9 @@ import { ChatMessageAPIType } from '../../api/chat-api'
 import { useDispatch, useSelector } from 'react-redux'
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/chat-reducer'
 import { AppStateType } from '../../redux/redux-store'
-import { WRITE_MESSAGE } from "../../Components/common/constants/index";
 import { Nullable } from './../../types/types'
 
-
+const WRITE_MESSAGE = 'Write your message...';
 
 const ChatPage: React.FC = () => {
     return <div className={s.chatPage}>
@@ -18,8 +17,6 @@ const ChatPage: React.FC = () => {
 const Chat: React.FC = () => {
 
     const dispatch = useDispatch()
-
-
     const status = useSelector((state: AppStateType) => state.chat.status)
 
     useEffect(() => {
