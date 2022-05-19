@@ -1,8 +1,9 @@
-import {Field, Form, Formik} from 'formik'
+import { Field, Form, Formik } from 'formik'
 import React from 'react'
-import {FilterType} from '../../redux/users-reducer'
-import {useSelector} from 'react-redux'
-import {getUsersFilter} from '../../redux/users-selectors'
+import { FilterType } from '../../../redux/users-reducer'
+import { useSelector } from 'react-redux'
+import { getUsersFilter } from '../../../redux/users-selectors'
+import style from './UsersSearchForm.module.scss'
 
 
 const usersSearchFormValidate = (values: any) => {
@@ -24,7 +25,7 @@ type PropsType = {
 
 export const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
     const filter = useSelector(getUsersFilter)
-    const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
+    const submit = (values: FormType, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
         const filter: FilterType = {
             term: values.term,
             friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
@@ -37,15 +38,15 @@ export const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
     return <div>
         <Formik
             enableReinitialize
-            initialValues={{term: filter.term, friend: String(filter.friend) as FriendFormType}}
+            initialValues={{ term: filter.term, friend: String(filter.friend) as FriendFormType }}
             validate={usersSearchFormValidate}
             onSubmit={submit}
         >
-            {({isSubmitting}) => (
-                <Form>
-                    <Field type="text" name="term"/>
+            {({ isSubmitting }) => (
+                <Form className={style.formContainer}>
+                    <Field type="text" name="term" placeholder={"🔎 Search"} className={style.searchInput} />
 
-                    <Field name="friend" as="select">
+                    <Field name="friend" as="select" className={style.select}>
                         <option value="null">All</option>
                         <option value="true">Only followed</option>
                         <option value="false">Only unfollowed</option>

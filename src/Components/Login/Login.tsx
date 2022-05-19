@@ -31,7 +31,6 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPro
 
                         {error && <div className={style.formSummaryError}>
                             {error}
-
                         </div>
                         }
                         <button>Login</button>

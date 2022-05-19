@@ -1,0 +1,53 @@
+@import '../Styles/Sass/Mixins.scss';
+@import '../Styles/Sass/Variables.scss';
+
+.paginator {
+    @include flex(row, space-between, center);
+    width: 150px;
+    height: 35px;
+    justify-content: center;
+
+    & button {
+        @include button(65px, 30px);
+
+        @media screen and (max-width: 450px) {
+            @include size(20px, 20px);
+            font-size: 10px;
+        }
+    }
+
+    & button:hover {
+        background-color: #65636a;
+        color: white;
+    }
+
+    & span {
+        margin-left: 2px;
+        margin-right: 2px;
+        min-width: 25px;
+        text-align: center;
+        border: 1px solid #a5a8a8;
+        border-radius: 4px;
+        padding: .1px .3px;
+        cursor: pointer;
+
+        @media screen and (max-width: 450px) {
+            font-size: 14px;
+            max-width: 20px;
+            max-height: 20px;
+            padding: 1px;
+            vertical-align: center;
+        }
+    }
+
+    & span:hover {
+        @include boxShadow();
+    }
+
+    .selectedPage {
+        background-color: #65636a;
+        color: white;
+        font-weight: bold;
+        font-size: large;
+    }
+}

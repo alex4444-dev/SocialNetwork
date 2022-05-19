@@ -1,9 +1,9 @@
-import React, {FC, useEffect} from 'react'
+import React, { FC, useEffect } from 'react'
 import Paginator from '../common/Paginator/Paginator'
-import User from './User'
-import {UsersSearchForm} from './UsersSearchForm'
-import {FilterType, follow, requestUsers, unfollow} from '../../redux/users-reducer'
-import {useDispatch, useSelector} from 'react-redux'
+import User from './User/User'
+import { UsersSearchForm } from './UserSearchForm/UsersSearchForm'
+import { FilterType, follow, requestUsers, unfollow } from '../../redux/users-reducer'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     getCurrentPage,
     getFollowingInProgress,
@@ -12,13 +12,13 @@ import {
     getUsers,
     getUsersFilter
 } from '../../redux/users-selectors'
-import {useHistory} from 'react-router-dom'
-
+import { useHistory } from 'react-router-dom'
+import styles from "./Users.module.scss";
 import * as queryString from 'querystring'
 
 type PropsType = {}
 
-type QueryParamsType = { term?: string; page?: string; friend?: string}
+type QueryParamsType = { term?: string; page?: string; friend?: string }
 export const Users: FC<PropsType> = (props) => {
     const users = useSelector(getUsers)
     const totalUsersCount = useSelector(getTotalUsersCount)
@@ -30,7 +30,7 @@ export const Users: FC<PropsType> = (props) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-   
+
     useEffect(() => {
         const parsed = queryString.parse(history.location.search.substr(1)) as QueryParamsType
 
@@ -39,17 +39,17 @@ export const Users: FC<PropsType> = (props) => {
 
         if (!!parsed.page) actualPage = Number(parsed.page)
 
-        if (!!parsed.term) actualFilter = {...actualFilter, term: parsed.term}
+        if (!!parsed.term) actualFilter = { ...actualFilter, term: parsed.term }
 
-        switch(parsed.friend){
+        switch (parsed.friend) {
             case "null":
-                actualFilter = {...actualFilter, friend: null}
+                actualFilter = { ...actualFilter, friend: null }
                 break;
             case "true":
-                actualFilter = {...actualFilter, friend: true}
+                actualFilter = { ...actualFilter, friend: true }
                 break;
             case "false":
-                actualFilter = {...actualFilter, friend: false}
+                actualFilter = { ...actualFilter, friend: false }
                 break;
         }
 
@@ -59,7 +59,7 @@ export const Users: FC<PropsType> = (props) => {
     useEffect(() => {
         const query: QueryParamsType = {}
         if (!!filter.term) query.term = filter.term
-        if (filter.friend !==null) query.friend = String(filter.friend)
+        if (filter.friend !== null) query.friend = String(filter.friend)
         if (currentPage !== 1) query.page = String(currentPage)
 
         history.push({
@@ -74,7 +74,7 @@ export const Users: FC<PropsType> = (props) => {
         friend?: 'true' | 'false' | 'null'
         page?: string
     } = queryString.parse(history.location.search)
-    const actualFilter = {...filter}
+    const actualFilter = { ...filter }
     let actualPage = currentPage
 
     if (parsed.term) {
@@ -112,20 +112,20 @@ export const Users: FC<PropsType> = (props) => {
 
 
 
-    return <div>
+    return <div className={styles.usersPage}>
 
         <UsersSearchForm onFilterChanged={onFilterChanged} initialValue={actualFilter} />
 
         <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
-                   totalItemsCount={totalUsersCount} pageSize={pageSize}/>
+            totalItemsCount={totalUsersCount} pageSize={pageSize} />
         <div>
             {
                 users.map(u => <User user={u}
-                                     followingInProgress={followingInProgress}
-                                     key={u.id}
-                                     unfollow={unfollowCallback}
-                                     follow={FollowCallback}
-                    />
+                    followingInProgress={followingInProgress}
+                    key={u.id}
+                    unfollow={unfollowCallback}
+                    follow={FollowCallback}
+                />
                 )
             }
         </div>

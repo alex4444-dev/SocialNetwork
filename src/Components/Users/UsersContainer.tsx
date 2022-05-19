@@ -1,7 +1,8 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
-import {getIsFetching} from '../../redux/users-selectors'
-import {Users} from './Users'
+import { useSelector } from 'react-redux'
+import { getIsFetching } from '../../redux/users-selectors'
+import { Users } from './Users'
+import styles from "./Users.module.scss";
 import Preloader from "../common/Preloader/Preloader";
 
 type UsersPagePropsType = {
@@ -10,9 +11,19 @@ type UsersPagePropsType = {
 
 export const UsersPage: React.FC<UsersPagePropsType> = (props) => {
     const isFetching = useSelector(getIsFetching)
-    return <>
-        <h2>{props.pageTitle}</h2>
-        {isFetching ? <Preloader/> : null}
-        <Users />
-    </>
+    return (<div className={styles.usersContainer}>
+        <>
+            <div className={styles.users}>
+                {isFetching
+                    ? <Preloader />
+                    : null}
+                <Users />
+            </div>
+
+        </>
+    </div>
+
+    )
+
+
 }
